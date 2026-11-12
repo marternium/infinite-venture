@@ -1,6 +1,6 @@
 # Infinite Ventures — Architecture
 
-**Document version:** 1.0
+**Document version:** 1.1
 **Status:** Initial architectural guidelines
 **Project:** Infinite Ventures
 **Development methodology:** Spec-Driven Development (SDD)
@@ -422,19 +422,134 @@ Repeated rendering must not accidentally trigger purchases, production rewards o
 
 # 12. Technical Constraints
 
-Initial implementation constraints:
+The initial implementation must comply with the following approved technology stack and architectural constraints.
 
-- HTML.
-- CSS.
-- JavaScript.
-- Browser-based execution.
-- Local persistence.
-- No mandatory external APIs.
-- No mandatory backend.
-- No mandatory user accounts.
-- No unnecessary frameworks or dependencies.
+## 12.1. Approved Technology Stack
 
-Any deviation from these constraints must be justified in an approved SPEC or architectural decision record.
+The project will use the following technologies:
+
+| Layer | Technology | Responsibility |
+|---|---|---|
+| Markup | HTML5 | Semantic application structure and DOM entry point |
+| Styling | CSS3 | Visual presentation, layout and interface styling |
+| Programming Language | Native JavaScript (ES6+) | Application logic and gameplay systems |
+| Module System | ECMAScript Modules | Modular code organization through native `import` and `export` |
+| Build Tool | Vite | Development server, HMR, asset processing and production builds |
+| Persistence | Browser localStorage | Local game state serialization and retrieval |
+| Hosting | Static web hosting | Delivery of the application without mandatory backend services |
+
+No frontend framework is approved for the initial implementation.
+
+## 12.2. JavaScript Architecture
+
+JavaScript must use native ECMAScript Modules.
+
+The implementation must follow these conventions:
+
+- Modules must have clear and focused responsibilities.
+- Public interfaces must be explicitly exposed through `export`.
+- Dependencies must be explicitly declared through `import`.
+- Modules must depend only on the functionality they actually require.
+- Business logic must remain independent from UI rendering.
+- State ownership and state modification responsibilities must be clearly defined.
+- Circular dependencies must be avoided.
+- Modules must not rely on hidden global coupling.
+- Core gameplay rules must remain testable independently from visual presentation whenever reasonably possible.
+
+Physical module boundaries and file organization must be established through approved specifications.
+
+## 12.3. CSS Architecture
+
+CSS must be organized according to presentation responsibilities rather than gameplay system boundaries.
+
+The stylesheet organization must distinguish the following categories:
+
+- **Base styles:** Global reset, box model and fundamental typography rules.
+- **Design tokens:** Shared color palettes, spacing scales and theme variables.
+- **Layout:** Grid, Flexbox and spatial arrangement patterns.
+- **Components:** Styles for reusable interface elements such as buttons, inputs and cards.
+- **Interface sections:** Page-level styling for navigation, headers, footers and other interface sections.
+- **Utilities:** Reusable helper classes for common styling needs.
+
+CSS responsibilities must remain separate from gameplay logic.
+
+No CSS framework or preprocessor is approved for the initial implementation.
+
+## 12.4. HTML Responsibilities
+
+HTML5 must provide the semantic structure of the application.
+
+The HTML layer must:
+
+- Define the application entry point and document structure.
+- Provide semantic markup for interface elements.
+- Establish the DOM structure consumed by the UI layer.
+- Remain independent from gameplay and economic calculations.
+
+Gameplay logic must not be embedded in HTML markup.
+
+## 12.5. Development and Build Tooling
+
+Vite is approved as the project's development and production build tool.
+
+Its responsibilities are limited to:
+
+- Providing the local development server.
+- Supporting Hot Module Replacement (HMR).
+- Supporting the ECMAScript Module development workflow.
+- Processing application assets.
+- Generating optimized production builds.
+
+Vite is a development and build-time tool. It must not become a mandatory runtime service for the deployed game.
+
+The production application must remain compatible with static web hosting.
+
+Installing and configuring Vite and its dependencies must be handled through the relevant approved implementation specification.
+
+## 12.6. Dependency Management
+
+The initial implementation must prioritize native browser capabilities and avoid unnecessary external dependencies.
+
+The following restrictions apply:
+
+- No frontend framework is approved.
+- No CSS framework or preprocessor is approved.
+- External dependencies must have a clear technical justification.
+- Dependencies must not introduce mandatory backend services or external runtime infrastructure.
+- Development dependencies and runtime dependencies must be distinguished.
+- Adding dependencies or changing the approved stack requires explicit justification and approval through the project's specification or architectural decision process.
+
+## 12.7. Runtime and Hosting Constraints
+
+The game must execute in a web browser and use static web hosting.
+
+The initial implementation must not require:
+
+- Backend services.
+- Remote databases.
+- Mandatory external APIs.
+- User account systems.
+- Server-side application processes.
+
+Vite may be used during development and production build generation, but the deployed application must consist of static assets that can be served by a static hosting provider.
+
+## 12.8. Persistence Constraints
+
+Browser localStorage is the approved initial persistence mechanism.
+
+The persistence architecture must remain consistent with Section 9.
+
+Game systems must interact with persistence through defined responsibilities rather than independently writing arbitrary portions of the saved data.
+
+Any future change to the persistence mechanism must be justified through an approved specification or architectural decision record.
+
+## 12.9. Constraint Evolution
+
+The approved technology stack and constraints define the initial technical baseline.
+
+Any deviation must be justified and explicitly approved through a SPEC or ADR before implementation.
+
+The architecture must preserve the logical system boundaries defined in Section 3 and must not introduce unnecessary abstractions or dependencies.
 
 # 13. Architecture Decision Records
 

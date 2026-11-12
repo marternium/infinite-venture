@@ -64,6 +64,46 @@ The following decisions have already been established and must be respected:
 
 These are product-level decisions, not implementation instructions.
 
+## 4.1. Backend Services Prohibition
+
+The following backend services and external dependencies are **explicitly prohibited** for the initial implementation:
+
+- User authentication and account systems
+- Cloud storage or database backends
+- External payment processing
+- Real-time API connections to third-party services
+- Server-side game state persistence
+
+The initial implementation must operate entirely in the browser using only HTML, CSS, and native JavaScript.
+
+## 4.2. Technology Stack Constraints
+
+Approved technologies for initial implementation:
+
+- HTML5 for semantic markup
+- CSS3 for styling with modular architecture by responsibility category
+- Native JavaScript (ES6+ Modules) for business logic
+- Vite as a development dependency only (no runtime dependency)
+- Browser localStorage for state persistence
+- Static hosting platform for production deployment
+
+All frameworks (React, Vue, Svelte, etc.) are explicitly prohibited without explicit project owner approval.
+
+## 4.3. Dependency and Tooling Conventions
+
+Development tooling approved:
+
+| Category | Tools | Usage Notes |
+|----------|-------|-------------|
+| Build/Dev | Vite | HMR, asset processing, production build |
+| Linting | ESLint | JavaScript style and error checking |
+| Formatting | Prettier | Consistent code formatting |
+| Documentation | VSCode Markdown Preview | GitHub-compatible preview |
+
+All tooling must support the specified constraints (no runtime deps, native JS only).
+
+Any deviation from these constraints must be justified in an approved SPEC or architectural decision record.
+
 ## 5. Development Methodology
 
 The project follows Spec-Driven Development (SDD).
