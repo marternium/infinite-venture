@@ -1,0 +1,56 @@
+/* Infinite Ventures - Layout Styles */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.container--narrow {
+  max-width: 640px;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.flex {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-gray-700);
+}
+
+.page-header__title {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: var(--space-2);
+}
+
+.page-content {
+  padding-top: var(--space-4);
+}
